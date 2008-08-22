@@ -30,4 +30,4 @@ FCKConfig.ToolbarSets["Simple"] = [
 	['FontName','FontSize'],
 	['TextColor','BGColor'],
 	['-','About']
-] ;
+] ;                                                 
