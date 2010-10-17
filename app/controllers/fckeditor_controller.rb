@@ -2,7 +2,7 @@ require 'fileutils'
 require 'tmpdir'
 
 class FckeditorController < ActionController::Base
-  UPLOADED = "/system/uploads"
+  UPLOADED = "/uploads"
   UPLOADED_ROOT = RAILS_ROOT + "/public" + UPLOADED
   MIME_TYPES = [
     "image/jpg",
@@ -17,7 +17,7 @@ class FckeditorController < ActionController::Base
   xml.instruct!
     #=> <?xml version="1.0" encoding="utf-8" ?>
   xml.Connector("command" => params[:Command], "resourceType" => 'File') do
-    xml.CurrentFolder("url" => @uri, "path" => params[:CurrentFolder])
+    xml.CurrentFolder("url" => @fck_url, "path" => params[:CurrentFolder])
     xml.Folders do
       @folders.each do |folder|
         xml.Folder("name" => folder)
@@ -49,7 +49,7 @@ class FckeditorController < ActionController::Base
     @folders = Array.new
     @files = {}
     begin
-      @uri = upload_directory_path
+      @fck_url = upload_directory_path
       @current_folder = current_directory_path
       Dir.entries(@current_folder).each do |entry|
         next if entry =~ /^\./
@@ -64,9 +64,9 @@ class FckeditorController < ActionController::Base
 
   def create_folder
     begin 
-      @uri = current_directory_path
-      path = @uri + params[:NewFolderName]
-      if !(File.stat(@uri).writable?)
+      @fck_url = current_directory_path
+      path = @fck_url + params[:NewFolderName]
+      if !(File.stat(@fck_url).writable?)
         @errorNumber = 103
       elsif params[:NewFolderName] !~ /[\w\d\s]+/
         @errorNumber = 102
@@ -84,7 +84,7 @@ class FckeditorController < ActionController::Base
   def upload_file
     begin
       @new_file = check_file(params[:NewFile])
-      @uri = upload_directory_path
+      @fck_url = upload_directory_path
       ftype = @new_file.content_type.strip
       if ! MIME_TYPES.include?(ftype)
         @errorNumber = 202
