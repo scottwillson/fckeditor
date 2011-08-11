@@ -17,6 +17,5 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
  
   s.files        = Dir.glob("{app,lib,public}/**/*") + %w(README CHANGELOG init.rb install.rb)
-  s.executables  = ['bundle']
   s.require_path = 'lib'
 end
