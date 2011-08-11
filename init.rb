@@ -1,3 +1,5 @@
+$:.unshift "#{File.dirname(__FILE__)}/lib"
+
 # Include hook code here
 require 'fckeditor'
 require 'fckeditor_version'
