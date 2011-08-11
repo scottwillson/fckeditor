@@ -59,6 +59,9 @@ begin
           s.requirements << 'none'
           s.files = PKG_FILES
           s.description = "Adds FCKeditor helpers and code to Rails application"
+          s.author = "Scott Rutherford"
+          s.email = "scott.willson@gmail.com"
+          s.homepage = "https://github.com/scottwillson/fckeditor"
   end
 
   desc "Create gem package for FCKeditor plugin"
