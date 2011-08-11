@@ -24,12 +24,12 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 end
 
 # Globals
-require 'lib/fckeditor_version'
+require File.expand_path(File.dirname(__FILE__) + "/lib/fckeditor_version")
 PKG_NAME = 'fckeditor_plugin'
 PKG_VERSION = FckeditorVersion.current
 
 PKG_FILES = ['README', 'CHANGELOG', 'init.rb', 'install.rb']
-PKG_DIRECTORIES = ['app/', 'lib/', 'public/', 'tasks/', 'test/']
+PKG_DIRECTORIES = ['app/', 'lib/', 'public/', 'test/']
 PKG_DIRECTORIES.each do |dir|
   Find.find(dir) do |f|
     if FileTest.directory?(f) and f =~ /\.svn/
