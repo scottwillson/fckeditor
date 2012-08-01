@@ -1,12 +1,5 @@
 # Fckeditor
 module Fckeditor
-  PLUGIN_NAME = 'fckeditor'
-  PLUGIN_PATH = "#{Rails.root}/vendor/plugins/#{PLUGIN_NAME}"
-  PLUGIN_PUBLIC_PATH = "#{PLUGIN_PATH}/public"
-  PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"  
-  PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"  
-  PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
-      
   module Helper
     def fckeditor_textarea(object, field, options = {})
       var = instance_variable_get("@#{object}")
@@ -81,5 +74,4 @@ module Fckeditor
   end
 end
 
-include ActionView
-
+require 'railtie' if defined?(Rails)
